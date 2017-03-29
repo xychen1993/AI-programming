@@ -1,0 +1,21 @@
+3-8
+
+(defun show-list (lst)
+  (cond ((atom lst) (format t "~A" lst))
+        (t (format t "[")
+           (show-list (car lst))
+           (do ((l (cdr lst) (cdr l)))
+               ((atom l) 
+                (unless (null l)
+                  (format t " . ~A" l)))
+               (format t " ")
+               (show-list (car l)))
+           (format t "]"))))
+
+(defun show-dots (lst)
+  (cond ((atom lst) (format t "~A" lst))
+        (t (format t "(")
+           (show-dots (car lst))
+           (format t " . ")
+           (show-dots (cdr lst))
+           (format t ")"))))

@@ -1,0 +1,15 @@
+(defstruct 3tree data left middle right)
+
+(defun 3tree-clone (tree)
+  (unless (null tree)
+      (make-3tree :data (3tree-data tree)
+                  :left (3tree-clone (3tree-left tree))
+                  :right (3tree-clone (3tree-right tree))
+                  :middle (3tree-clone (3tree-middle tree)))))
+
+(defun 3tree-member (value tree)
+  (unless (null tree)
+    (or (eql value (3tree-data tree))
+        (3tree-member value (3tree-left tree))
+        (3tree-member value (3tree-right tree))
+        (3tree-member value (3tree-middle tree)))))

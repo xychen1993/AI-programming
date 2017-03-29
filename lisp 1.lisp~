@@ -1,0 +1,8 @@
+(defun has-number-p (list) 
+  (cond 
+   ((atom list) (numberp list))
+   (t  (or (some #'numberp list)
+           (has-number-p (car list))
+           (has-number-p (cdr list))
+           ))
+   ))
